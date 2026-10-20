@@ -33,7 +33,7 @@
         nextSlide.classList.add('active');
 
         // Trigger animations for elements inside
-        const animatedElements = nextSlide.querySelectorAll('.info-card, .tech-card, .scenario-item, .fire-rule, .terror-rule, .safety-card, .orenburg-fact, .conclusion-item, .author-block, .highlight-box, .stats-panel, .water-stat, .firstaid-block, .warning-panel, .map-placeholder, .emergency-numbers, .fire-stat');
+        const animatedElements = nextSlide.querySelectorAll('.info-card, .tech-card, .scenario-item, .fire-rule, .terror-rule, .safety-card, .orenburg-fact, .conclusion-item, .author-block, .highlight-box, .stats-panel, .water-stat, .firstaid-block, .warning-panel, .map-placeholder, .emergency-numbers, .fire-stat, .aid-step, .aid-skill, .number-item, .stat-item, .tech-icon, .card-icon, .scenario-icon, .terror-icon, .conclusion-icon, .rule-number, .title-block');
         animatedElements.forEach((el, i) => {
             el.style.animation = 'none';
             el.offsetHeight; // force reflow

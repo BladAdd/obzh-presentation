@@ -368,7 +368,7 @@ p {
 }
 
 .stat-label {
-    font-size: 16px;
+    font-size: 20px;
     color: var(--text-muted);
 }
 
@@ -408,7 +408,7 @@ p {
     background: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.25);
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 20px;
     color: #fca5a5;
 }
 
@@ -749,7 +749,7 @@ p {
 }
 
 .author-label {
-    font-size: 16px;
+    font-size: 20px;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 2px;
