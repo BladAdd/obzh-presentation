@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правила поведения в опасных ситуациях — ОБЗР</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="canvas-container"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <button class="nav-btn prev" id="prevBtn" aria-label="Предыдущий слайд">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">10</span></div>
+        <button class="nav-btn next" id="nextBtn" aria-label="Следующий слайд">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+    </nav>
+
+    <!-- Progress bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Slides -->
+    <main class="slides-container">
+
+        <!-- Slide 1: Title -->
+        <section class="slide active" data-slide="1">
+            <div class="slide-content">
+                <div class="title-block">
+                    <div class="badge">ОБЗР · Урок</div>
+                    <h1>Правила поведения<br>в опасных ситуациях</h1>
+                    <p class="subtitle">Российская Федерация · Оренбургская область</p>
+                </div>
+                <div class="title-3d" id="title3d"></div>
+                <div class="meta">
+                    <span class="meta-item">📚 Основы безопасности жизнедеятельности</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: What is ЧС -->
+        <section class="slide" data-slide="2">
+            <div class="slide-content">
+                <h2>Что такое чрезвычайная ситуация?</h2>
+                <div class="cards-grid">
+                    <div class="info-card">
+                        <div class="card-icon">🌊</div>
+                        <h3>Природные ЧС</h3>
+                        <p>Наводнения, землетрясения, лесные пожары, ураганы, засухи — стихийные бедствия, вызванные природными явлениями.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">🏭</div>
+                        <h3>Техногенные ЧС</h3>
+                        <p>Аварии на промышленных объектах, транспорте, выбросы опасных веществ, аварии на ЭС и трубопроводах.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-icon">⚠️</div>
+                        <h3>Социальные ЧС</h3>
+                        <p>Террористические акты, эпидемии, массовые беспорядки, конфликты и другие угрозы обществу.</p>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <p>ЧС — это обстановка на определённой территории, возникшая в результате аварии, опасного природного явления, катастрофы, которые могут повлечь человеческие жертвы и ущерб здоровью людей или окружающей среде.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Natural ЧС -->
+        <section class="slide" data-slide="3">
+            <div class="slide-content">
+                <h2>Природные чрезвычайные ситуации</h2>
+                <div class="split-layout">
+                    <div class="split-left">
+                        <div class="scenario-item">
+                            <span class="scenario-icon">🌊</span>
+                            <div>
+                                <h4>Наводнения и паводки</h4>
+                                <p>Характерны для Оренбургской области весенний период при таянии снега и дождях. Реки Урал, Сакмара, Ик выходят из берегов.</p>
+                            </div>
+                        </div>
+                        <div class="scenario-item">
+                            <span class="scenario-icon">🔥</span>
+                            <div>
+                                <h4>Лесные и степные пожары</h4>
+                                <p>Летом в Оренбуржье часто наблюдается высокая пожароопасность из-за жары и засухи. Степные пожары распространяются стремительно.</p>
+                            </div>
+                        </div>
+                        <div class="scenario-item">
+                            <span class="scenario-icon">🌪️</span>
+                            <div>
+                                <h4>Ураганы и смерчи</h4>
+                                <p>Сильные ветры до 40 м/с и более наблюдаются в регионе. Смерчи редки, но возможны в тёплый период.</p>
+                            </div>
+                        </div>
+                        <div class="scenario-item">
+                            <span class="scenario-icon">❄️</span>
+                            <div>
+                                <h4>Аномальные морозы и гололёд</h4>
+                                <p>Зимой температура в Оренбургской области опускается до −35 °C и ниже. Гололёд опасен для пешеходов и водителей.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="split-right">
+                        <div class="stats-panel">
+                            <h3>Статистика по России</h3>
+                            <div class="stat-item">
+                                <span class="stat-value">~400</span>
+                                <span class="stat-label">ЧС в год по РФ</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">65%</span>
+                                <span class="stat-label">природного характера</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">35%</span>
+                                <span class="stat-label">техногенного характера</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Technogenic ЧС -->
+        <section class="slide" data-slide="4">
+            <div class="slide-content">
+                <h2>Техногенные чрезвычайные ситуации</h2>
+                <div class="cards-grid three-col">
+                    <div class="tech-card">
+                        <div class="tech-icon">⚗️</div>
+                        <h3>Химические аварии</h3>
+                        <p>Выброс аварийно химически опасных веществ (АХОВ) на предприятиях. Оренбург — крупный нефтехимический центр: заводы Промышленность, Газпром.</p>
+                        <div class="alert-tag">Опасные вещества: хлор, аммиак, сероводород</div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">🚗</div>
+                        <h3>Транспортные аварии</h3>
+                        <p>ДТП — одна из главных причин гибели людей в России. Через Оренбургскую область проходят трассы М-5 «Урал» и Р-239.</p>
+                        <div class="alert-tag">Правила: ремни, скорость, дистанция</div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">⚡</div>
+                        <h3>Аварии на энергетике</h3>
+                        <p>Отключения электроэнергии, аварии на ЛЭП, котельных. Зимой это критично: риск обморожения и размораживания систем.</p>
+                        <div class="alert-tag">Подготовка: фонари, тёплая одежда, консервы</div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">💧</div>
+                        <h3>Аварии на водопроводе</h3>
+                        <p>Прорывы труб в зимний период — частое явление в Оренбуржье. Затопление подвалов, проседание грунта.</p>
+                        <div class="alert-tag">Действия: отключить воду, электричество, вызвать аварийную службу</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Fire safety -->
+        <section class="slide" data-slide="5">
+            <div class="slide-content">
+                <h2>Пожарная безопасность</h2>
+                <div class="split-layout">
+                    <div class="split-left">
+                        <div class="fire-rule">
+                            <span class="rule-number">01</span>
+                            <div>
+                                <h4>Обнаружив пожар — звони 101 или 112</h4>
+                                <p>Сообщи адрес, что горит, есть ли люди в здании. Не паникуй, говори чётко.</p>
+                            </div>
+                        </div>
+                        <div class="fire-rule">
+                            <span class="rule-number">02</span>
+                            <div>
+                                <h4>Эвакуируйся без паники</h4>
+                                <p>Пользуйся лестницами, не лифтом. При задымлении — ползи или иди, прикрыв рот мокрой тканью.</p>
+                            </div>
+                        </div>
+                        <div class="fire-rule">
+                            <span class="rule-number">03</span>
+                            <div>
+                                <h4>Не открывай окна и двери</h4>
+                                <p>Приток воздуха усилит горение. Закрой двери, чтобы замедлить распространение огня.</p>
+                            </div>
+                        </div>
+                        <div class="fire-rule">
+                            <span class="rule-number">04</span>
+                            <div>
+                                <h4>Не возвращайся в горящее здание</h4>
+                                <p>Спасение имущества не стоит жизни. Дожидись прибытия пожарных.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="split-right">
+                        <div class="fire-3d" id="fire3d"></div>
+                        <div class="fire-stat">
+                            <span class="big-number">80%</span>
+                            <span>пожаров в России происходит в жилом секторе</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Terrorism & Social -->
+        <section class="slide" data-slide="6">
+            <div class="slide-content">
+                <h2>Социальные угрозы и терроризм</h2>
+                <div class="split-layout">
+                    <div class="split-left">
+                        <div class="terror-rule">
+                            <div class="terror-icon">👁️</div>
+                            <h3>Будь внимателен</h3>
+                            <p>Обращай внимание на подозрительных людей, бесхозные предметы, сумки, пакеты в общественных местах.</p>
+                        </div>
+                        <div class="terror-rule">
+                            <div class="terror-icon">📞</div>
+                            <h3>Сообщи о подозрительном</h3>
+                            <p>Немедленно сообщи о находке в полицию по телефону 102 или 112. Не трогай предмет сам!</p>
+                        </div>
+                        <div class="terror-rule">
+                            <div class="terror-icon">🏃</div>
+                            <h3>При угрозе — эвакуируйся</h3>
+                            <p>Покинь здание по лестницам. Не пользуйся лифтом. Не задерживайся и не оглядывайся.</p>
+                        </div>
+                        <div class="terror-rule">
+                            <div class="terror-icon">🙈</div>
+                            <h3>Не снимай и не распространяй</h3>
+                            <p>Запрещено фотографировать и снимать объекты правопорядка, а также распространять ложную информацию о терактах.</p>
+                        </div>
+                    </div>
+                    <div class="split-right">
+                        <div class="warning-panel">
+                            <h3>Экстремизм — это преступление</h3>
+                            <p>Пропаганда экстремизма, распространение запрещённой литературы — уголовная ответственность по ст. 280 и 282 УК РФ.</p>
+                            <div class="warning-divider"></div>
+                            <p>Никогда не соглашайся на предложения перенести чужой груз, сумку через границу или выполнить «простое поручение» незнакомцев.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Water & Household Safety -->
+        <section class="slide" data-slide="7">
+            <div class="slide-content">
+                <h2>Безопасность на воде и в быту</h2>
+                <div class="cards-grid two-col">
+                    <div class="safety-card">
+                        <h3>Безопасность на воде</h3>
+                        <ul class="safety-list">
+                            <li>Купайся только в оборудованных местах</li>
+                            <li>Не заплывай за буйки и дальше 10 м от берега</li>
+                            <li>Не ныряй в незнакомых местах</li>
+                            <li>Не купайся в состоянии алкогольного опьянения</li>
+                            <li>Не оставляй детей у воды без присмотра</li>
+                            <li>При ЧС на воде — зови на помощь, не паникуй</li>
+                        </ul>
+                    </div>
+                    <div class="safety-card">
+                        <h3>Безопасность в быту</h3>
+                        <ul class="safety-list">
+                            <li>Проверяй исправность розеток и проводки</li>
+                            <li>Не оставляй без присмотра включённые приборы</li>
+                            <li>Держи ножи и лезвия в недоступном для детей месте</li>
+                            <li>Не используй газовую плиту для обогрева</li>
+                            <li>Храни лекарства и бытовую химию в плотно закрытых упаковках</li>
+                            <li>При утечке газа — не включай свет, открой окно, позвони 112</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="water-stat">
+                    <span class="big-number">10 000+</span>
+                    <span>человек ежегодно гибнет на водоёмах России. 40% — в состоянии алкогольного опьянения.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: First Aid -->
+        <section class="slide" data-slide="8">
+            <div class="slide-content">
+                <h2>Первая медицинская помощь</h2>
+                <div class="split-layout">
+                    <div class="split-left">
+                        <div class="firstaid-block">
+                            <h3>Порядок действий при ЧП</h3>
+                            <div class="aid-step">
+                                <span class="aid-num">1</span>
+                                <p>Убедись, что тебе ничто не угрожает</p>
+                            </div>
+                            <div class="aid-step">
+                                <span class="aid-num">2</span>
+                                <p>Вызови скорую помощь — 103 или 112</p>
+                            </div>
+                            <div class="aid-step">
+                                <span class="aid-num">3</span>
+                                <p>Окажи первую помощь в пределах своих знаний</p>
+                            </div>
+                            <div class="aid-step">
+                                <span class="aid-num">4</span>
+                                <p>Не оставляй пострадавшего одного до приезда медиков</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="split-right">
+                        <div class="firstaid-block">
+                            <h3>Ключевые навыки</h3>
+                            <div class="aid-skill">
+                                <span>🫁 Искусственное дыхание</span>
+                                <p>30 нажатий + 2 вдоха. При остановке дыхания.</p>
+                            </div>
+                            <div class="aid-skill">
+                                <span>🩹 Наложение повязки</span>
+                                <p>При кровотечениях — давящая повязка или жгут с указанием времени.</p>
+                            </div>
+                            <div class="aid-skill">
+                                <span>🦴 Шина при переломах</span>
+                                <p>Обездвижь конечность, не пытайся вправлять кости сам.</p>
+                            </div>
+                            <div class="aid-skill">
+                                <span>🧊 Холод при ушибах</span>
+                                <p>Приложи лёд через ткань на 15-20 минут.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Orenburg Region Specific -->
+        <section class="slide" data-slide="9">
+            <div class="slide-content">
+                <h2>Особенности Оренбургской области</h2>
+                <div class="split-layout">
+                    <div class="split-left">
+                        <div class="orenburg-fact">
+                            <h3>Климат</h3>
+                            <p>Резко континентальный: жаркое лето (+40 °C) и холодная зима (до −40 °C). Засухи и суховеи — частое явление.</p>
+                        </div>
+                        <div class="orenburg-fact">
+                            <h3>Паводки</h3>
+                            <p>Реки Урал, Сакмара, Ик, Самара ежегодно разливаются весной. Зоны возможного затопления — в основном в восточной и северной частях области.</p>
+                        </div>
+                        <div class="orenburg-fact">
+                            <h3>Промышленность</h3>
+                            <p>Оренбургский газохимический комплекс, нефтепереработка. Зона экологического риска — юго-восток области.</p>
+                        </div>
+                        <div class="orenburg-fact">
+                            <h3>Пожароопасность</h3>
+                            <p>Степная зона — высокий риск степных и лесных пожаров в летний период.</p>
+                        </div>
+                    </div>
+                    <div class="split-right">
+                        <div class="map-placeholder">
+                            <div id="map3d"></div>
+                            <p>Оренбургская область — самая южная область Уральского федерального округа. Площадь: 123 702 км², население: ~1,9 млн.</p>
+                        </div>
+                        <div class="emergency-numbers">
+                            <h3>Экстренные службы</h3>
+                            <div class="number-item">
+                                <span class="number">112</span>
+                                <span>Единый номер экстренных служб</span>
+                            </div>
+                            <div class="number-item">
+                                <span class="number">101</span>
+                                <span>Пожарная служба</span>
+                            </div>
+                            <div class="number-item">
+                                <span class="number">102</span>
+                                <span>Полиция</span>
+                            </div>
+                            <div class="number-item">
+                                <span class="number">103</span>
+                                <span>Скорая помощь</span>
+                            </div>
+                            <div class="number-item">
+                                <span class="number">104</span>
+                                <span>Аварийная газовая служба</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Conclusion & Author -->
+        <section class="slide" data-slide="10">
+            <div class="slide-content">
+                <h2>Итоги и выводы</h2>
+                <div class="conclusion-grid">
+                    <div class="conclusion-item">
+                        <div class="conclusion-icon">🧠</div>
+                        <h4>Знания — лучшая защита</h4>
+                        <p>Знание правил безопасности спасает жизни. Изучай инструкции и не пренебрегай предупреждениями.</p>
+                    </div>
+                    <div class="conclusion-item">
+                        <div class="conclusion-icon">📋</div>
+                        <h4>Планируй заранее</h4>
+                        <p>Имей дома аптечку, фонарь, документы в одном месте. Знай план эвакуации.</p>
+                    </div>
+                    <div class="conclusion-item">
+                        <div class="conclusion-icon">🤝</div>
+                        <h4>Помогай другим</h4>
+                        <p>В критической ситуации важно помочь близким и не растеряться. Взаимовыручка — залог выживания.</p>
+                    </div>
+                    <div class="conclusion-item">
+                        <div class="conclusion-icon">📞</div>
+                        <h4>Вызывай помощь вовремя</h4>
+                        <p>Не стесняйся звонить в экстренные службы. Лучше перестраховаться, чем опоздать.</p>
+                    </div>
+                </div>
+
+                <div class="author-block">
+                    <div class="author-divider"></div>
+                    <div class="author-content">
+                        <div class="author-label">Автор презентации</div>
+                        <div class="author-name">Шинкоренко Влад</div>
+                        <div class="author-sub">ОБЗР · Правила поведения в опасных ситуациях</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Keyboard hint -->
+    <div class="keyboard-hint">
+        <kbd>←</kbd> <kbd>→</kbd> — навигация · <kbd>F</kbd> — полный экран
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
