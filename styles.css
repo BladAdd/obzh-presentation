@@ -169,7 +169,7 @@ html, body {
     display: none;
 }
 
-/* Typography */
+/* Typography — base text 20px */
 h1 {
     font-size: 56px;
     font-weight: 900;
@@ -211,6 +211,36 @@ p {
     font-weight: 400;
 }
 
+/* SVG icon base styles */
+.card-svg-icon,
+.scenario-svg-icon,
+.tech-svg-icon,
+.terror-svg-icon,
+.aid-svg-icon,
+.conclusion-svg-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+}
+
+.helmet-svg {
+    width: 180px;
+    height: 180px;
+    filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.3));
+}
+
+.extinguisher-svg {
+    width: 140px;
+    height: 180px;
+    filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.3));
+}
+
+.map-svg {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+}
+
 /* Slide 1 — Title */
 .title-block {
     text-align: center;
@@ -237,19 +267,15 @@ p {
     font-weight: 400;
 }
 
-.title-3d {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 400px;
-    opacity: 0.15;
-    pointer-events: none;
+.title-visual {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    animation: float 4s ease-in-out infinite;
 }
 
 .meta {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .meta-item {
@@ -285,11 +311,6 @@ p {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.card-icon {
-    font-size: 40px;
-    margin-bottom: 16px;
-}
-
 .highlight-box {
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(239, 68, 68, 0.08));
     border: 1px solid rgba(245, 158, 11, 0.2);
@@ -312,7 +333,7 @@ p {
     align-items: start;
 }
 
-/* Slide 3 — Natural ЧС */
+/* Scenario items */
 .scenario-item {
     display: flex;
     align-items: flex-start;
@@ -331,11 +352,7 @@ p {
     border-bottom: none;
 }
 
-.scenario-icon {
-    font-size: 32px;
-    flex-shrink: 0;
-}
-
+/* Stats panel */
 .stats-panel {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -372,11 +389,7 @@ p {
     color: var(--text-muted);
 }
 
-/* Slide 4 — Tech cards */
-.cards-grid.three-col {
-    grid-template-columns: repeat(2, 1fr);
-}
-
+/* Tech cards */
 .tech-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -397,11 +410,6 @@ p {
     border-color: rgba(59, 130, 246, 0.4);
 }
 
-.tech-icon {
-    font-size: 36px;
-    margin-bottom: 12px;
-}
-
 .alert-tag {
     margin-top: 12px;
     padding: 8px 14px;
@@ -412,7 +420,7 @@ p {
     color: #fca5a5;
 }
 
-/* Slide 5 — Fire safety */
+/* Fire rules */
 .fire-rule {
     display: flex;
     align-items: flex-start;
@@ -440,13 +448,10 @@ p {
     width: 50px;
 }
 
-.fire-3d {
-    width: 100%;
-    height: 280px;
-    border-radius: 20px;
-    overflow: hidden;
-    background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.08), transparent);
-    margin-bottom: 24px;
+.fire-visual {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
 }
 
 .fire-stat {
@@ -464,7 +469,7 @@ p {
     display: block;
 }
 
-/* Slide 6 — Terrorism */
+/* Terror rules */
 .terror-rule {
     display: flex;
     align-items: flex-start;
@@ -483,11 +488,7 @@ p {
     border-bottom: none;
 }
 
-.terror-icon {
-    font-size: 28px;
-    flex-shrink: 0;
-}
-
+/* Warning panel */
 .warning-panel {
     background: linear-gradient(135deg, rgba(239, 68, 68, 0.06), rgba(245, 158, 11, 0.06));
     border: 1px solid rgba(239, 68, 68, 0.2);
@@ -507,12 +508,27 @@ p {
     margin: 20px 0;
 }
 
-/* Slide 7 — Water & Household */
-.cards-grid.two-col {
-    grid-template-columns: 1fr 1fr;
-    margin-bottom: 24px;
+/* Magnitude items */
+.magnitude-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
 }
 
+.magnitude-item:last-child {
+    border-bottom: none;
+}
+
+.mag-value {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--accent-primary);
+    min-width: 100px;
+}
+
+/* Safety cards */
 .safety-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -564,7 +580,7 @@ p {
     color: var(--accent-tertiary);
 }
 
-/* Slide 8 — First Aid */
+/* First aid */
 .firstaid-block {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -606,6 +622,9 @@ p {
 }
 
 .aid-skill {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
     padding: 14px 0;
     border-bottom: 1px solid var(--border-color);
 }
@@ -627,7 +646,7 @@ p {
     color: var(--text-muted);
 }
 
-/* Slide 9 — Orenburg */
+/* Orenburg facts */
 .orenburg-fact {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -663,13 +682,6 @@ p {
     margin-top: 16px;
 }
 
-#map3d {
-    width: 100%;
-    height: 200px;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
 .emergency-numbers {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -702,7 +714,7 @@ p {
     min-width: 50px;
 }
 
-/* Slide 10 — Conclusion */
+/* Conclusion */
 .conclusion-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -723,11 +735,6 @@ p {
 .conclusion-item:nth-child(2) { animation-delay: 0.2s; }
 .conclusion-item:nth-child(3) { animation-delay: 0.3s; }
 .conclusion-item:nth-child(4) { animation-delay: 0.4s; }
-
-.conclusion-icon {
-    font-size: 32px;
-    margin-bottom: 12px;
-}
 
 .conclusion-item p {
     font-size: 20px;
@@ -822,11 +829,6 @@ kbd {
     }
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
@@ -849,7 +851,6 @@ kbd {
     h1 { font-size: 32px; }
     h2 { font-size: 26px; }
     .cards-grid,
-    .cards-grid.three-col,
     .cards-grid.two-col,
     .split-layout,
     .conclusion-grid {
@@ -857,8 +858,6 @@ kbd {
     }
     .nav { right: 12px; }
     .nav-btn { width: 40px; height: 40px; }
-    p { font-size: 18px; }
-    .safety-list li { font-size: 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
