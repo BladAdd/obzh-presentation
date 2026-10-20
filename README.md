@@ -3,7 +3,11 @@
 Интерактивная презентация для урока ОБЗР (Основы безопасности жизнедеятельности).
 Россия и Оренбургская область.
 
-**Живая версия:** https://obzh-presentation.vercel.app
+**Живая версия (GitHub Pages):** https://bladadd.github.io/obzh-presentation/
+
+**Резервная версия (Vercel):** https://obzh-presentation.vercel.app
+
+> В некоторых сетях домен `vercel.app` может быть недоступен — используйте ссылку GitHub Pages.
 
 ## Слайды (15)
 
@@ -42,7 +46,7 @@
 
 Добавьте к адресу `?static`, например:
 
-`https://obzh-presentation.vercel.app/?static#slide-7`
+`https://bladadd.github.io/obzh-presentation/?static#slide-7`
 
 Отключает анимации и 3D-фон — удобно для скриншотов и печати в PDF.
 Прямые ссылки на слайды: `#slide-1` … `#slide-15`.
@@ -60,7 +64,8 @@ public/
     └── map.svg
 ```
 
-Публикуется каталог `public/` (Vercel).
+Каталог `public/` публикуется на GitHub Pages через GitHub Actions
+(`.github/workflows/pages.yml`) и на Vercel (Output Directory: `public`).
 
 ## Автор
 
