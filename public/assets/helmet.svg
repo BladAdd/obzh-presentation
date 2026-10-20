@@ -1,13 +1,29 @@
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Каска спасателя МЧС России">
     <defs>
-        <linearGradient id="helmetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#f59e0b"/>
-            <stop offset="100%" style="stop-color:#d97706"/>
+        <linearGradient id="dome" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fef3c7"/>
+            <stop offset=".35" stop-color="#fbbf24"/>
+            <stop offset="1" stop-color="#d97706"/>
         </linearGradient>
+        <linearGradient id="brim" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f59e0b"/>
+            <stop offset="1" stop-color="#b45309"/>
+        </linearGradient>
+        <radialGradient id="shine" cx=".32" cy=".18" r=".75">
+            <stop offset="0" stop-color="#ffffff" stop-opacity=".55"/>
+            <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
     </defs>
-    <path d="M40 100 Q40 50 100 50 Q160 50 160 100 L160 120 Q160 140 140 140 L60 140 Q40 140 40 120 Z" fill="url(#helmetGrad)" opacity="0.9"/>
-    <path d="M60 140 L60 155 Q60 165 70 165 L130 165 Q140 165 140 155 L140 140" fill="#fbbf24"/>
-    <path d="M80 50 Q80 30 100 30 Q120 30 120 50" fill="#f59e0b" opacity="0.7"/>
-    <circle cx="100" cy="110" r="8" fill="#0a0e1a"/>
-    <text x="100" y="180" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="bold">МЧС РОССИИ</text>
+    <ellipse cx="110" cy="200" rx="74" ry="10" fill="#f59e0b" opacity=".14"/>
+    <path d="M38 122 Q38 56 110 56 Q182 56 182 122 L182 134 Q182 148 164 148 L56 148 Q38 148 38 134 Z" fill="url(#dome)"/>
+    <path d="M38 122 Q38 56 110 56 Q182 56 182 122 L182 134 Q182 148 164 148 L56 148 Q38 148 38 134 Z" fill="url(#shine)"/>
+    <path d="M110 57 L110 148" stroke="#92400e" stroke-width="2" opacity=".16"/>
+    <path d="M74 66 Q66 102 68 148" stroke="#92400e" stroke-width="2" opacity=".13" fill="none"/>
+    <path d="M146 66 Q154 102 152 148" stroke="#92400e" stroke-width="2" opacity=".13" fill="none"/>
+    <path d="M30 132 Q30 121 44 121 L176 121 Q190 121 190 132 L190 141 Q190 156 170 156 L50 156 Q30 156 30 141 Z" fill="url(#brim)"/>
+    <path d="M58 121 Q110 110 162 121 L162 132 Q110 121 58 132 Z" fill="#78350f" opacity=".42"/>
+    <circle cx="110" cy="98" r="18" fill="#0b1120" opacity=".88"/>
+    <path d="M110 85 L113.8 94 L123 95.2 L116.2 101.4 L118.2 110 L110 105.6 L101.8 110 L103.8 101.4 L97 95.2 L106.2 94 Z" fill="#fbbf24"/>
+    <rect x="86" y="162" width="48" height="5" rx="2.5" fill="#f59e0b" opacity=".3"/>
+    <text x="110" y="186" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="2" fill="#fbbf24">МЧС РОССИИ</text>
 </svg>

@@ -1,11 +1,53 @@
-<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-    <rect width="400" height="200" fill="#111827" rx="12"/>
-    <path d="M50 120 Q80 80 120 90 Q160 100 200 70 Q240 40 280 60 Q320 80 350 50" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.6"/>
-    <path d="M50 140 Q100 130 150 140 Q200 150 250 130 Q300 110 350 120" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.5"/>
-    <circle cx="200" cy="100" r="6" fill="#ef4444"/>
-    <circle cx="200" cy="100" r="12" fill="none" stroke="#ef4444" stroke-width="1" opacity="0.5"/>
-    <text x="200" y="125" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold">ОРЕНБУРГ</text>
-    <text x="100" y="160" text-anchor="middle" fill="#6b7280" font-size="8">УРАЛ</text>
-    <text x="300" y="160" text-anchor="middle" fill="#6b7280" font-size="8">САКМАРА</text>
-    <text x="200" y="180" text-anchor="middle" fill="#6b7280" font-size="8">ОРЕНБУРГСКАЯ ОБЛАСТЬ</text>
+<svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Стилизованная карта Оренбургской области">
+    <defs>
+        <linearGradient id="mapbg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#0b1220"/>
+            <stop offset="1" stop-color="#101a2e"/>
+        </linearGradient>
+        <radialGradient id="vignette" cx=".5" cy=".45" r=".75">
+            <stop offset=".55" stop-color="#000" stop-opacity="0"/>
+            <stop offset="1" stop-color="#000" stop-opacity=".35"/>
+        </radialGradient>
+        <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+            <path d="M24 0H0V24" fill="none" stroke="rgba(148,163,184,.06)" stroke-width="1"/>
+        </pattern>
+    </defs>
+    <rect width="420" height="220" rx="14" fill="url(#mapbg)"/>
+    <rect width="420" height="220" rx="14" fill="url(#grid)"/>
+    <path d="M60 118 L84 86 L128 70 L178 64 L232 68 L286 62 L336 80 L364 108 L348 140 L306 152 L272 176 L214 182 L166 170 L120 178 L84 150 Z"
+          fill="rgba(245,158,11,.08)" stroke="rgba(251,191,36,.6)" stroke-width="1.6" stroke-dasharray="5 4"/>
+    <path d="M120 150 Q170 158 210 150 T300 138 T356 118" fill="none" stroke="#38bdf8" stroke-width="2.2" opacity=".6"/>
+    <path d="M206 74 Q214 104 248 132 T300 140" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity=".45"/>
+    <g font-family="Inter, Arial, sans-serif" font-size="8" fill="#7c8ba1">
+        <text x="126" y="170" text-anchor="middle">р. Урал</text>
+        <text x="272" y="120" text-anchor="middle">р. Сакмара</text>
+    </g>
+    <g>
+        <circle cx="206" cy="150" r="4.5" fill="#f87171"/>
+        <circle cx="206" cy="150" r="4" fill="none" stroke="#f87171" stroke-width="1.6">
+            <animate attributeName="r" values="4;15" dur="2.4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".75;0" dur="2.4s" repeatCount="indefinite"/>
+        </circle>
+        <text x="206" y="168" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" font-weight="700" fill="#fca5a5">ОРЕНБУРГ</text>
+
+        <circle cx="318" cy="136" r="3.5" fill="#fbbf24"/>
+        <circle cx="318" cy="136" r="3" fill="none" stroke="#fbbf24" stroke-width="1.3">
+            <animate attributeName="r" values="3;10" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".65;0" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <text x="318" y="154" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#cbd5e1">ОРСК</text>
+
+        <circle cx="94" cy="106" r="3" fill="#60a5fa"/>
+        <text x="94" y="122" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#cbd5e1">БУЗУЛУК</text>
+
+        <circle cx="128" cy="80" r="3" fill="#60a5fa"/>
+        <text x="128" y="69" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#cbd5e1">БУГУРУСЛАН</text>
+    </g>
+    <g transform="translate(386 42)">
+        <circle r="13" fill="rgba(148,163,184,.06)" stroke="rgba(148,163,184,.22)"/>
+        <path d="M0 -8 L3.2 4 L0 2 L-3.2 4 Z" fill="#fbbf24"/>
+        <text y="11" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="6.5" fill="#94a3b8">N</text>
+    </g>
+    <text x="210" y="25" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="800" letter-spacing="2.5" fill="#fbbf24" opacity=".9">ОРЕНБУРГСКАЯ ОБЛАСТЬ</text>
+    <rect width="420" height="220" rx="14" fill="url(#vignette)"/>
 </svg>

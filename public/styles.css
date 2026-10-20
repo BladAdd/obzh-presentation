@@ -1,20 +1,29 @@
-/* ============================================
-   ОБЗР Presentation — Professional Styles
-   ============================================ */
+/* ============================================================
+   ОБЗР — Правила поведения в опасных ситуациях
+   Premium dark presentation theme
+   ============================================================ */
 
 :root {
-    --bg-primary: #0a0e1a;
-    --bg-secondary: #111827;
-    --bg-card: rgba(17, 24, 39, 0.7);
-    --accent-primary: #f59e0b;
-    --accent-secondary: #ef4444;
-    --accent-tertiary: #3b82f6;
-    --text-primary: #f9fafb;
-    --text-secondary: #9ca3af;
-    --text-muted: #6b7280;
-    --border-color: rgba(255, 255, 255, 0.08);
-    --glass-bg: rgba(255, 255, 255, 0.04);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --bg: #060910;
+    --bg-soft: #0b1220;
+    --surface: rgba(17, 26, 45, 0.78);
+    --surface-2: rgba(10, 17, 32, 0.86);
+    --line: rgba(148, 163, 184, 0.14);
+    --line-strong: rgba(148, 163, 184, 0.26);
+    --amber: #fbbf24;
+    --amber-deep: #f59e0b;
+    --orange: #fb923c;
+    --red: #f87171;
+    --red-deep: #ef4444;
+    --blue: #60a5fa;
+    --violet: #a78bfa;
+    --green: #34d399;
+    --text: #f8fafc;
+    --text-soft: #cbd5e1;
+    --muted: #94a3b8;
+    --dim: #64748b;
+    --radius: 20px;
+    --reveal-ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -23,21 +32,47 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg-primary);
-    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(1100px 700px at 12% -10%, rgba(245, 158, 11, 0.09), transparent 62%),
+        radial-gradient(900px 650px at 108% 112%, rgba(59, 130, 246, 0.09), transparent 62%),
+        var(--bg);
+    -webkit-font-smoothing: antialiased;
 }
+
+/* Тонкая сетка на фоне */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(ellipse at 50% 42%, #000 20%, transparent 78%);
+    mask-image: radial-gradient(ellipse at 50% 42%, #000 20%, transparent 78%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+::selection {
+    background: rgba(251, 191, 36, 0.28);
+    color: #fff;
+}
+
+/* ============================================================
+   Фон: 3D-частицы и мягкие световые пятна
+   ============================================================ */
 
 #canvas-container {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: 0;
     pointer-events: none;
 }
@@ -46,64 +81,129 @@ html, body {
     display: block;
 }
 
-/* Navigation */
+.slides-container::before,
+.slides-container::after {
+    content: '';
+    position: fixed;
+    width: 640px;
+    height: 640px;
+    border-radius: 50%;
+    filter: blur(50px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.slides-container::before {
+    left: -260px;
+    bottom: -320px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.14), transparent 66%);
+    animation: drift 20s ease-in-out infinite alternate;
+}
+
+.slides-container::after {
+    right: -280px;
+    top: -300px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.13), transparent 66%);
+    animation: drift 24s ease-in-out infinite alternate-reverse;
+}
+
+/* ============================================================
+   Навигация
+   ============================================================ */
+
 .nav {
     position: fixed;
-    top: 50%;
-    right: 24px;
-    transform: translateY(-50%);
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
     z-index: 1000;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
+    padding: 7px 10px;
+    background: rgba(8, 13, 24, 0.78);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .nav-btn {
-    width: 48px;
-    height: 48px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    border: 1px solid var(--glass-border);
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    color: var(--text-primary);
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-soft);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.25s ease;
 }
 
-.nav-btn:hover {
-    background: rgba(245, 158, 11, 0.15);
-    border-color: var(--accent-primary);
-    transform: scale(1.1);
+.nav-btn:hover:not(:disabled) {
+    background: rgba(251, 191, 36, 0.13);
+    border-color: rgba(251, 191, 36, 0.35);
+    color: var(--amber);
 }
 
 .nav-btn svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 }
 
 .nav-btn:disabled {
-    opacity: 0.3;
+    opacity: 0.25;
     cursor: not-allowed;
 }
 
 .slide-counter {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    color: var(--text-secondary);
-    letter-spacing: 0.5px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1px solid var(--glass-border);
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+    padding: 0 8px;
+    white-space: nowrap;
 }
 
-/* Progress bar */
+.slide-counter span:first-child {
+    color: var(--amber);
+    font-weight: 800;
+}
+
+.nav-dots {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 4px;
+}
+
+.nav-dot {
+    width: 6px;
+    height: 6px;
+    padding: 0;
+    border: none;
+    border-radius: 99px;
+    background: rgba(148, 163, 184, 0.3);
+    cursor: pointer;
+    transition: all 0.3s var(--reveal-ease);
+}
+
+.nav-dot:hover {
+    background: rgba(251, 191, 36, 0.6);
+}
+
+.nav-dot.active {
+    width: 22px;
+    background: linear-gradient(90deg, var(--amber), var(--amber-deep));
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.55);
+}
+
+/* Прогресс */
 .progress-bar {
     position: fixed;
     top: 0;
@@ -111,17 +211,23 @@ html, body {
     width: 100%;
     height: 3px;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+    width: 0;
+    background: linear-gradient(90deg, var(--amber-deep), var(--amber), var(--red), var(--amber));
+    background-size: 300% 100%;
+    animation: progressShine 5s linear infinite;
+    box-shadow: 0 0 14px rgba(251, 191, 36, 0.5);
+    transition: width 0.55s var(--reveal-ease);
 }
 
-/* Slides */
+/* ============================================================
+   Слайды
+   ============================================================ */
+
 .slides-container {
     position: relative;
     width: 100%;
@@ -131,35 +237,62 @@ html, body {
 
 .slide {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 60px 100px;
+    padding: 54px 92px 104px;
     opacity: 0;
     visibility: hidden;
-    transform: translateX(60px) scale(0.98);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(60px) scale(0.985);
+    filter: blur(7px);
+    transition:
+        opacity 0.55s var(--reveal-ease),
+        transform 0.55s var(--reveal-ease),
+        filter 0.55s ease,
+        visibility 0.55s;
 }
 
 .slide.active {
     opacity: 1;
     visibility: visible;
     transform: translateX(0) scale(1);
+    filter: blur(0);
     z-index: 10;
 }
 
 .slide.prev-active {
-    transform: translateX(-60px) scale(0.98);
+    transform: translateX(-60px) scale(0.985);
+}
+
+/* Крупный «призрачный» номер слайда */
+.slide::before {
+    content: attr(data-num);
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    font-size: clamp(110px, 16vw, 230px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    background: linear-gradient(180deg, rgba(251, 191, 36, 0.13), rgba(251, 191, 36, 0));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    pointer-events: none;
+    user-select: none;
+}
+
+.slide[data-slide="1"]::before {
+    display: none;
 }
 
 .slide-content {
+    position: relative;
+    z-index: 1;
     width: 100%;
-    max-width: 1100px;
-    max-height: 85vh;
+    max-width: 1160px;
+    max-height: calc(100vh - 170px);
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -169,209 +302,488 @@ html, body {
     display: none;
 }
 
-/* Typography — base text 20px */
+/* Надзаголовок раздела (добавляется из JS) */
+.slide-kicker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber);
+}
+
+.slide-kicker::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--amber), transparent);
+}
+
+/* ============================================================
+   Появление элементов активного слайда (CSS-переходы)
+   ============================================================ */
+
+:is(.info-card, .tech-card, .scenario-item, .fire-rule, .terror-rule,
+    .safety-card, .orenburg-fact, .conclusion-item, .author-block,
+    .highlight-box, .stats-panel, .water-stat, .firstaid-block,
+    .warning-panel, .map-placeholder, .emergency-numbers, .fire-stat,
+    .aid-step, .aid-skill, .number-item, .stat-item, .magnitude-item,
+    .title-block, .title-visual, .hero-stats, .meta, .slide-kicker,
+    .aid-note, .fire-visual) {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+        opacity 0.55s var(--reveal-ease),
+        transform 0.55s var(--reveal-ease);
+}
+
+:is(.scenario-item, .fire-rule, .terror-rule, .orenburg-fact, .slide-kicker) {
+    transform: translateX(-22px);
+}
+
+html.booted .slide.active :is(
+    .info-card, .tech-card, .scenario-item, .fire-rule, .terror-rule,
+    .safety-card, .orenburg-fact, .conclusion-item, .author-block,
+    .highlight-box, .stats-panel, .water-stat, .firstaid-block,
+    .warning-panel, .map-placeholder, .emergency-numbers, .fire-stat,
+    .aid-step, .aid-skill, .number-item, .stat-item, .magnitude-item,
+    .title-block, .title-visual, .hero-stats, .meta, .slide-kicker,
+    .aid-note, .fire-visual) {
+    opacity: 1;
+    transform: none;
+}
+
+/* Каскадная задержка появления */
+html.booted .slide.active .slide-kicker { transition-delay: 0.02s; }
+html.booted .slide.active :is(.stat-item, .magnitude-item, .number-item, .aid-step, .aid-skill):nth-child(1) { transition-delay: 0.06s; }
+html.booted .slide.active :is(.stat-item, .magnitude-item, .number-item, .aid-step, .aid-skill):nth-child(2) { transition-delay: 0.12s; }
+html.booted .slide.active :is(.stat-item, .magnitude-item, .number-item, .aid-step, .aid-skill):nth-child(3) { transition-delay: 0.18s; }
+html.booted .slide.active :is(.stat-item, .magnitude-item, .number-item, .aid-step, .aid-skill):nth-child(4) { transition-delay: 0.24s; }
+html.booted .slide.active :is(.stat-item, .magnitude-item, .number-item, .aid-step, .aid-skill):nth-child(5) { transition-delay: 0.3s; }
+
+html.booted .slide.active .info-card:nth-child(1),
+html.booted .slide.active .tech-card:nth-child(1),
+html.booted .slide.active .scenario-item:nth-child(1),
+html.booted .slide.active .fire-rule:nth-child(1),
+html.booted .slide.active .terror-rule:nth-child(1),
+html.booted .slide.active .safety-card:nth-child(1),
+html.booted .slide.active .orenburg-fact:nth-child(1),
+html.booted .slide.active .conclusion-item:nth-child(1) { transition-delay: 0.05s; }
+
+html.booted .slide.active .info-card:nth-child(2),
+html.booted .slide.active .tech-card:nth-child(2),
+html.booted .slide.active .scenario-item:nth-child(2),
+html.booted .slide.active .fire-rule:nth-child(2),
+html.booted .slide.active .terror-rule:nth-child(2),
+html.booted .slide.active .safety-card:nth-child(2),
+html.booted .slide.active .orenburg-fact:nth-child(2),
+html.booted .slide.active .conclusion-item:nth-child(2) { transition-delay: 0.12s; }
+
+html.booted .slide.active .info-card:nth-child(3),
+html.booted .slide.active .tech-card:nth-child(3),
+html.booted .slide.active .scenario-item:nth-child(3),
+html.booted .slide.active .fire-rule:nth-child(3),
+html.booted .slide.active .terror-rule:nth-child(3),
+html.booted .slide.active .orenburg-fact:nth-child(3),
+html.booted .slide.active .conclusion-item:nth-child(3) { transition-delay: 0.19s; }
+
+html.booted .slide.active .tech-card:nth-child(4),
+html.booted .slide.active .scenario-item:nth-child(4),
+html.booted .slide.active .fire-rule:nth-child(4),
+html.booted .slide.active .terror-rule:nth-child(4),
+html.booted .slide.active .orenburg-fact:nth-child(4),
+html.booted .slide.active .conclusion-item:nth-child(4) { transition-delay: 0.26s; }
+
+html.booted .slide.active .highlight-box { transition-delay: 0.3s; }
+html.booted .slide.active .author-block { transition-delay: 0.36s; }
+html.booted .slide.active .aid-note { transition-delay: 0.4s; }
+
+/* ============================================================
+   Типографика
+   ============================================================ */
+
 h1 {
-    font-size: 56px;
+    font-size: clamp(38px, 4.6vw, 64px);
     font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #ffffff 0%, var(--accent-primary) 100%);
+    line-height: 1.06;
+    letter-spacing: -0.03em;
+    background: linear-gradient(120deg, #ffffff 20%, #fde68a 55%, #f59e0b 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 16px;
 }
 
 h2 {
-    font-size: 36px;
+    font-size: clamp(28px, 3vw, 38px);
     font-weight: 800;
-    margin-bottom: 40px;
-    letter-spacing: -0.01em;
-    color: var(--text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 30px;
+    color: var(--text);
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 54px;
+    height: 3px;
+    margin-top: 14px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--amber), rgba(251, 191, 36, 0));
 }
 
 h3 {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 8px;
-    color: var(--text-primary);
+    color: var(--text);
 }
 
 h4 {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 6px;
-    color: var(--text-primary);
+    color: var(--text);
 }
 
 p {
     font-size: 20px;
-    line-height: 1.6;
-    color: var(--text-secondary);
+    line-height: 1.55;
+    color: var(--text-soft);
     font-weight: 400;
 }
 
-/* SVG icon base styles */
+/* ============================================================
+   Общие поверхности / карточки
+   ============================================================ */
+
+.info-card,
+.tech-card,
+.safety-card,
+.firstaid-block,
+.stats-panel,
+.orenburg-fact,
+.conclusion-item,
+.map-placeholder,
+.emergency-numbers,
+.fire-stat,
+.water-stat,
+.warning-panel {
+    position: relative;
+    background: linear-gradient(180deg, rgba(23, 33, 54, 0.8), rgba(10, 17, 32, 0.88));
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+        0 22px 46px -26px rgba(0, 0, 0, 0.9),
+        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+/* Верхняя световая кромка у ключевых карточек */
+.info-card::after,
+.tech-card::after,
+.safety-card::after,
+.conclusion-item::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 26px;
+    right: 26px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.55), transparent);
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.info-card,
+.tech-card,
+.safety-card,
+.conclusion-item {
+    will-change: transform;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.info-card:hover,
+.tech-card:hover,
+.safety-card:hover,
+.conclusion-item:hover {
+    transform: translateY(-5px);
+    border-color: rgba(251, 191, 36, 0.32);
+    box-shadow:
+        0 30px 60px -28px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(251, 191, 36, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Иконки в плитках */
 .card-svg-icon,
-.scenario-svg-icon,
 .tech-svg-icon,
-.terror-svg-icon,
-.aid-svg-icon,
 .conclusion-svg-icon {
-    width: 36px;
-    height: 36px;
+    display: block;
+    width: 46px;
+    height: 46px;
+    padding: 10px;
+    margin-bottom: 16px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+.scenario-svg-icon,
+.terror-svg-icon {
+    width: 44px;
+    height: 44px;
+    padding: 9px;
+    border-radius: 13px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
     flex-shrink: 0;
 }
 
-.helmet-img {
-    width: 180px;
-    height: 180px;
-    filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.3));
-}
-
-.extinguisher-img {
-    width: 140px;
-    height: 180px;
-    filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.3));
-}
-
-.map-img {
-    width: 100%;
-    height: 200px;
+.aid-svg-icon {
+    width: 42px;
+    height: 42px;
+    padding: 8px;
     border-radius: 12px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
 }
 
-/* Slide 1 — Title */
+/* ============================================================
+   Слайд 1 — обложка
+   ============================================================ */
+
 .title-block {
     text-align: center;
-    animation: fadeInUp 0.8s ease-out;
 }
 
 .badge {
-    display: inline-block;
-    padding: 8px 20px;
-    background: rgba(245, 158, 11, 0.12);
-    border: 1px solid rgba(245, 158, 11, 0.3);
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--accent-primary);
-    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+}
+
+.badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 10px var(--amber);
 }
 
 .subtitle {
     font-size: 22px;
-    color: var(--text-muted);
+    color: var(--muted);
     font-weight: 400;
 }
 
 .title-visual {
+    position: relative;
+    width: 210px;
+    height: 210px;
+    margin: 6px auto 2px;
+    display: grid;
+    place-items: center;
+}
+
+.title-visual::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg,
+            transparent 0deg,
+            rgba(251, 191, 36, 0.7) 70deg,
+            transparent 150deg,
+            transparent 360deg);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+    animation: spin 9s linear infinite;
+    opacity: 0.85;
+}
+
+.title-visual::after {
+    content: '';
+    position: absolute;
+    inset: 34px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.2), transparent 70%);
+    filter: blur(12px);
+}
+
+.helmet-img {
+    position: relative;
+    z-index: 1;
+    width: 168px;
+    height: 168px;
+    filter: drop-shadow(0 14px 34px rgba(245, 158, 11, 0.35));
+    animation: float 5.5s ease-in-out infinite;
+}
+
+.hero-stats {
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin: 20px 0;
-    animation: float 4s ease-in-out infinite;
+    gap: 30px;
+    margin-top: 18px;
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.hero-stat span {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--amber);
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.hero-stat small {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dim);
+}
+
+.hero-divider {
+    width: 1px;
+    height: 34px;
+    background: linear-gradient(180deg, transparent, var(--line-strong), transparent);
 }
 
 .meta {
-    margin-top: 20px;
+    margin-top: 18px;
+    text-align: center;
 }
 
 .meta-item {
-    font-size: 20px;
-    color: var(--text-muted);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
 }
 
-/* Slide 2 — Cards grid */
+/* ============================================================
+   Раскладки
+   ============================================================ */
+
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-bottom: 32px;
+    gap: 22px;
+    margin-bottom: 26px;
 }
+
+.cards-grid.two-col {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+    align-items: start;
+}
+
+.split-left,
+.split-right {
+    min-width: 0;
+    align-self: start;
+}
+
+/* ============================================================
+   Слайд 2 — классификация ЧС
+   ============================================================ */
 
 .info-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 32px;
-    backdrop-filter: blur(12px);
-    transition: all 0.3s ease;
-    animation: fadeInUp 0.6s ease-out backwards;
-}
-
-.info-card:nth-child(1) { animation-delay: 0.1s; }
-.info-card:nth-child(2) { animation-delay: 0.2s; }
-.info-card:nth-child(3) { animation-delay: 0.3s; }
-
-.info-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(245, 158, 11, 0.4);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    padding: 28px;
 }
 
 .highlight-box {
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(239, 68, 68, 0.08));
-    border: 1px solid rgba(245, 158, 11, 0.2);
+    position: relative;
+    padding: 22px 26px 22px 30px;
+    background: linear-gradient(120deg, rgba(245, 158, 11, 0.07), rgba(239, 68, 68, 0.05));
+    border: 1px solid rgba(251, 191, 36, 0.18);
     border-radius: 16px;
-    padding: 24px 32px;
-    animation: fadeInUp 0.5s ease-out 0.4s backwards;
+}
+
+.highlight-box::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 16px;
+    bottom: 16px;
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--amber), var(--red));
 }
 
 .highlight-box p {
     font-size: 20px;
-    color: var(--text-primary);
-    font-weight: 500;
+    color: var(--text);
+    font-weight: 450;
 }
 
-/* Split layout */
-.split-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: start;
-}
+/* ============================================================
+   Пункты-сценарии
+   ============================================================ */
 
-/* Scenario items */
 .scenario-item {
     display: flex;
     align-items: flex-start;
     gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border-color);
-    animation: fadeInLeft 0.5s ease-out backwards;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--line);
 }
-
-.scenario-item:nth-child(1) { animation-delay: 0.1s; }
-.scenario-item:nth-child(2) { animation-delay: 0.2s; }
-.scenario-item:nth-child(3) { animation-delay: 0.3s; }
-.scenario-item:nth-child(4) { animation-delay: 0.4s; }
 
 .scenario-item:last-child {
     border-bottom: none;
 }
 
-/* Stats panel */
+/* Статистика */
 .stats-panel {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 32px;
-    backdrop-filter: blur(12px);
+    padding: 30px;
 }
 
 .stats-panel h3 {
-    margin-bottom: 24px;
-    font-size: 22px;
+    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 .stat-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border-color);
+    gap: 2px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
 }
 
 .stat-item:last-child {
@@ -379,142 +791,190 @@ p {
 }
 
 .stat-value {
-    font-size: 42px;
+    font-size: 44px;
     font-weight: 900;
-    color: var(--accent-primary);
+    letter-spacing: -0.03em;
+    background: linear-gradient(120deg, var(--amber), var(--orange));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .stat-label {
-    font-size: 20px;
-    color: var(--text-muted);
+    font-size: 18px;
+    color: var(--muted);
 }
 
-/* Tech cards */
+/* ============================================================
+   Слайд 4 — техногенные
+   ============================================================ */
+
 .tech-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 28px;
-    backdrop-filter: blur(12px);
-    transition: all 0.3s ease;
-    animation: fadeInUp 0.5s ease-out backwards;
+    padding: 20px 22px;
 }
 
-.tech-card:nth-child(1) { animation-delay: 0.1s; }
-.tech-card:nth-child(2) { animation-delay: 0.2s; }
-.tech-card:nth-child(3) { animation-delay: 0.3s; }
-.tech-card:nth-child(4) { animation-delay: 0.4s; }
-
-.tech-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(59, 130, 246, 0.4);
+.tech-card .tech-svg-icon {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    margin-bottom: 10px;
 }
 
 .alert-tag {
-    margin-top: 12px;
-    padding: 8px 14px;
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.25);
+    margin-top: 10px;
+    padding: 7px 12px;
+    background: rgba(248, 113, 113, 0.08);
+    border: 1px solid rgba(248, 113, 113, 0.22);
     border-radius: 10px;
-    font-size: 20px;
-    color: #fca5a5;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #fecaca;
 }
 
-/* Fire rules */
+/* ============================================================
+   Слайд 5 — пожар
+   ============================================================ */
+
 .fire-rule {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
-    padding: 18px 0;
-    border-bottom: 1px solid var(--border-color);
-    animation: fadeInLeft 0.5s ease-out backwards;
+    gap: 18px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--line);
 }
-
-.fire-rule:nth-child(1) { animation-delay: 0.1s; }
-.fire-rule:nth-child(2) { animation-delay: 0.2s; }
-.fire-rule:nth-child(3) { animation-delay: 0.3s; }
-.fire-rule:nth-child(4) { animation-delay: 0.4s; }
 
 .fire-rule:last-child {
     border-bottom: none;
 }
 
 .rule-number {
-    font-size: 32px;
-    font-weight: 900;
-    color: var(--accent-secondary);
-    opacity: 0.8;
+    width: 48px;
     flex-shrink: 0;
-    width: 50px;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    background: linear-gradient(120deg, var(--red), var(--amber));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.9;
 }
 
 .fire-visual {
+    position: relative;
     display: flex;
     justify-content: center;
-    padding: 20px 0;
+    padding: 14px 0 20px;
+}
+
+.fire-visual::before {
+    content: '';
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.16), transparent 68%);
+    filter: blur(14px);
+}
+
+.extinguisher-img {
+    position: relative;
+    width: 150px;
+    height: 192px;
+    filter: drop-shadow(0 16px 32px rgba(239, 68, 68, 0.28));
+    animation: float 6s ease-in-out infinite;
 }
 
 .fire-stat {
     text-align: center;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
     padding: 20px;
 }
 
 .big-number {
-    font-size: 48px;
-    font-weight: 900;
-    color: var(--accent-secondary);
     display: block;
+    font-size: 46px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    background: linear-gradient(120deg, var(--red), var(--amber));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
 }
 
-/* Terror rules */
-.terror-rule {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border-color);
-    animation: fadeInLeft 0.5s ease-out backwards;
+.fire-stat span:last-child {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.45;
 }
 
-.terror-rule:nth-child(1) { animation-delay: 0.1s; }
-.terror-rule:nth-child(2) { animation-delay: 0.2s; }
-.terror-rule:nth-child(3) { animation-delay: 0.3s; }
-.terror-rule:nth-child(4) { animation-delay: 0.4s; }
+/* ============================================================
+   Предупреждающие панели
+   ============================================================ */
 
-.terror-rule:last-child {
-    border-bottom: none;
-}
-
-/* Warning panel */
 .warning-panel {
-    background: linear-gradient(135deg, rgba(239, 68, 68, 0.06), rgba(245, 158, 11, 0.06));
-    border: 1px solid rgba(239, 68, 68, 0.2);
-    border-radius: 20px;
-    padding: 32px;
-    backdrop-filter: blur(12px);
+    padding: 28px;
+    background:
+        radial-gradient(340px 200px at 100% 0%, rgba(239, 68, 68, 0.1), transparent 70%),
+        linear-gradient(180deg, rgba(28, 26, 42, 0.82), rgba(12, 16, 30, 0.9));
+    border-color: rgba(248, 113, 113, 0.2);
 }
 
 .warning-panel h3 {
-    font-size: 22px;
-    margin-bottom: 16px;
+    font-size: 21px;
+    margin-bottom: 14px;
+}
+
+.warning-panel p strong {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.terror-call {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    background: rgba(248, 113, 113, 0.08);
+    border: 1px solid rgba(248, 113, 113, 0.22);
+    border-radius: 12px;
+}
+
+.terror-call-number {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--red);
+    text-shadow: 0 0 22px rgba(248, 113, 113, 0.4);
+}
+
+.terror-call-text {
+    font-size: 15px;
+    line-height: 1.3;
+    color: var(--text-soft);
 }
 
 .warning-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.3), transparent);
-    margin: 20px 0;
+    margin: 18px 0;
+    background: linear-gradient(90deg, transparent, rgba(248, 113, 113, 0.35), transparent);
 }
 
-/* Magnitude items */
 .magnitude-item {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border-color);
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 18px;
+    color: var(--text-soft);
 }
 
 .magnitude-item:last-child {
@@ -522,28 +982,40 @@ p {
 }
 
 .mag-value {
+    min-width: 104px;
     font-size: 20px;
     font-weight: 800;
-    color: var(--accent-primary);
-    min-width: 100px;
+    color: var(--amber);
+    font-variant-numeric: tabular-nums;
 }
 
-/* Safety cards */
+/* ============================================================
+   Слайд 9 — терроризм
+   ============================================================ */
+
+.terror-rule {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.terror-rule:last-child {
+    border-bottom: none;
+}
+
+/* ============================================================
+   Слайд 10 — вода и быт
+   ============================================================ */
+
 .safety-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 28px;
-    backdrop-filter: blur(12px);
-    animation: fadeInUp 0.5s ease-out backwards;
+    padding: 26px;
 }
-
-.safety-card:nth-child(1) { animation-delay: 0.1s; }
-.safety-card:nth-child(2) { animation-delay: 0.2s; }
 
 .safety-card h3 {
-    font-size: 22px;
-    margin-bottom: 20px;
+    font-size: 21px;
+    margin-bottom: 14px;
 }
 
 .safety-list {
@@ -551,55 +1023,69 @@ p {
 }
 
 .safety-list li {
-    font-size: 20px;
-    color: var(--text-secondary);
-    padding: 8px 0;
-    padding-left: 24px;
     position: relative;
-    line-height: 1.5;
+    padding: 7px 0 7px 26px;
+    font-size: 19px;
+    line-height: 1.45;
+    color: var(--text-soft);
 }
 
 .safety-list li::before {
-    content: '✓';
+    content: '';
     position: absolute;
-    left: 0;
-    color: var(--accent-primary);
-    font-weight: 700;
+    left: 2px;
+    top: 14px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
 }
 
 .water-stat {
-    text-align: center;
-    padding: 20px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    animation: fadeInUp 0.5s ease-out 0.3s backwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 18px 24px;
+    text-align: left;
 }
 
 .water-stat .big-number {
-    color: var(--accent-tertiary);
+    margin: 0;
+    font-size: 44px;
+    background: linear-gradient(120deg, var(--blue), var(--violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
 }
 
-/* First aid */
+.water-stat span:last-child {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+/* ============================================================
+   Слайд 11 — первая помощь
+   ============================================================ */
+
 .firstaid-block {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 32px;
-    backdrop-filter: blur(12px);
+    padding: 26px;
 }
 
 .firstaid-block h3 {
-    font-size: 22px;
-    margin-bottom: 24px;
+    font-size: 21px;
+    margin-bottom: 18px;
 }
 
 .aid-step {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border-color);
+    gap: 14px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
 }
 
 .aid-step:last-child {
@@ -607,26 +1093,31 @@ p {
 }
 
 .aid-num {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(245, 158, 11, 0.15);
-    border: 1px solid rgba(245, 158, 11, 0.3);
-    color: var(--accent-primary);
-    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    width: 34px;
+    height: 34px;
     flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    color: var(--amber);
+    font-size: 16px;
+    font-weight: 800;
+    box-shadow: 0 0 18px rgba(251, 191, 36, 0.12);
+}
+
+.aid-step p {
+    font-size: 19px;
 }
 
 .aid-skill {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
 }
 
 .aid-skill:last-child {
@@ -634,73 +1125,105 @@ p {
 }
 
 .aid-skill span {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--text-primary);
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--text);
 }
 
 .aid-skill p {
-    font-size: 20px;
-    color: var(--text-muted);
+    font-size: 17px;
+    line-height: 1.45;
+    color: #a9b6c9;
 }
 
-/* Orenburg facts */
+.aid-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 16px;
+    padding: 13px 22px;
+    background: linear-gradient(120deg, rgba(248, 113, 113, 0.07), rgba(251, 191, 36, 0.05));
+    border: 1px solid rgba(248, 113, 113, 0.16);
+    border-radius: 14px;
+    font-size: 16px;
+    color: var(--text-soft);
+}
+
+.aid-note strong {
+    color: var(--red);
+    font-weight: 800;
+    margin-right: 2px;
+}
+
+.aid-note-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--dim);
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   Слайд 14 — Оренбуржье
+   ============================================================ */
+
 .orenburg-fact {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 20px 24px;
-    margin-bottom: 16px;
-    backdrop-filter: blur(12px);
-    animation: fadeInLeft 0.5s ease-out backwards;
+    padding: 13px 18px;
+    margin-bottom: 10px;
 }
-
-.orenburg-fact:nth-child(1) { animation-delay: 0.1s; }
-.orenburg-fact:nth-child(2) { animation-delay: 0.2s; }
-.orenburg-fact:nth-child(3) { animation-delay: 0.3s; }
-.orenburg-fact:nth-child(4) { animation-delay: 0.4s; }
 
 .orenburg-fact h3 {
-    color: var(--accent-primary);
-    font-size: 20px;
+    color: var(--amber);
+    font-size: 19px;
+    margin-bottom: 3px;
+}
+
+.orenburg-fact p {
+    font-size: 18px;
+    line-height: 1.45;
 }
 
 .map-placeholder {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 24px;
-    margin-bottom: 24px;
-    backdrop-filter: blur(12px);
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.map-img {
+    display: block;
+    width: 100%;
+    height: 172px;
+    border-radius: 12px;
+    object-fit: cover;
 }
 
 .map-placeholder p {
-    font-size: 20px;
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 1.42;
     text-align: center;
-    margin-top: 16px;
+    color: var(--muted);
 }
 
 .emergency-numbers {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 24px;
-    backdrop-filter: blur(12px);
+    padding: 16px 18px;
 }
 
 .emergency-numbers h3 {
-    font-size: 20px;
-    margin-bottom: 16px;
+    font-size: 17px;
+    margin-bottom: 8px;
 }
 
 .number-item {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border-color);
+    gap: 14px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 17px;
+    color: var(--text-soft);
 }
 
 .number-item:last-child {
@@ -708,161 +1231,551 @@ p {
 }
 
 .number {
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--accent-secondary);
-    min-width: 50px;
+    min-width: 44px;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--red);
+    text-shadow: 0 0 18px rgba(248, 113, 113, 0.35);
 }
 
-/* Conclusion */
+/* ============================================================
+   Слайд 15 — итоги и автор
+   ============================================================ */
+
 .conclusion-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-bottom: 48px;
+    gap: 16px;
+    margin-bottom: 30px;
 }
 
 .conclusion-item {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 24px;
-    backdrop-filter: blur(12px);
-    animation: fadeInUp 0.5s ease-out backwards;
+    padding: 20px 22px;
 }
 
-.conclusion-item:nth-child(1) { animation-delay: 0.1s; }
-.conclusion-item:nth-child(2) { animation-delay: 0.2s; }
-.conclusion-item:nth-child(3) { animation-delay: 0.3s; }
-.conclusion-item:nth-child(4) { animation-delay: 0.4s; }
+.conclusion-svg-icon {
+    width: 38px;
+    height: 38px;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.conclusion-item h4 {
+    font-size: 19px;
+}
 
 .conclusion-item p {
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1.5;
 }
 
-/* Author block */
 .author-block {
+    position: relative;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
     text-align: center;
-    padding-top: 32px;
-    animation: fadeInUp 0.6s ease-out 0.5s backwards;
+}
+
+.author-block::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -60px;
+    transform: translateX(-50%);
+    width: 420px;
+    height: 170px;
+    background: radial-gradient(ellipse, rgba(245, 158, 11, 0.14), transparent 70%);
+    filter: blur(26px);
+    pointer-events: none;
 }
 
 .author-divider {
-    width: 120px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
-    margin: 0 auto 32px;
+    width: 100px;
+    height: 2px;
+    margin: 0 auto 18px;
     border-radius: 2px;
+    background: linear-gradient(90deg, transparent, var(--amber), transparent);
+}
+
+.author-avatar {
+    display: grid;
+    place-items: center;
+    width: 62px;
+    height: 62px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fde68a, #f59e0b);
+    color: #1a1206;
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    box-shadow:
+        0 0 0 1px rgba(251, 191, 36, 0.45),
+        0 0 34px rgba(245, 158, 11, 0.38),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
 }
 
 .author-label {
-    font-size: 20px;
-    color: var(--text-muted);
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
+    color: var(--dim);
 }
 
 .author-name {
-    font-size: 42px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #ffffff, var(--accent-primary));
+    margin-bottom: 4px;
+    font-size: clamp(30px, 3.4vw, 46px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    background: linear-gradient(120deg, #ffffff 15%, #fde68a 45%, #f59e0b 70%, #ffffff 95%);
+    background-size: 220% auto;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 8px;
+    -webkit-text-fill-color: transparent;
+    animation: shine 7s linear infinite;
 }
 
 .author-sub {
-    font-size: 20px;
-    color: var(--text-muted);
+    font-size: 16px;
+    color: var(--muted);
 }
 
-/* Keyboard hint */
+/* ============================================================
+   Подсказка
+   ============================================================ */
+
 .keyboard-hint {
     position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;
-    color: var(--text-muted);
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    padding: 8px 20px;
-    border-radius: 20px;
-    border: 1px solid var(--glass-border);
+    left: 22px;
+    bottom: 26px;
     z-index: 1000;
+    padding: 7px 14px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--dim);
+    background: rgba(8, 13, 24, 0.6);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
 
 kbd {
     display: inline-block;
-    padding: 2px 8px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
+    padding: 1px 7px;
+    margin: 0 1px;
     font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
-    margin: 0 2px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 5px;
 }
 
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
+/* ============================================================
+   Анимации
+   ============================================================ */
 
 @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50%      { transform: translateY(-9px); }
 }
 
-/* Responsive */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes drift {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to   { transform: translate3d(40px, -30px, 0) scale(1.12); }
+}
+
+@keyframes progressShine {
+    from { background-position: 0% 50%; }
+    to   { background-position: 200% 50%; }
+}
+
+@keyframes shine {
+    from { background-position: 0% center; }
+    to   { background-position: 220% center; }
+}
+
+/* ============================================================
+   Адаптивность
+   ============================================================ */
+
 @media (max-width: 1200px) {
     .slide {
-        padding: 40px 60px;
+        padding: 38px 56px 100px;
     }
-    h1 { font-size: 42px; }
-    h2 { font-size: 30px; }
-    .split-layout { gap: 32px; }
+
+    .split-layout {
+        gap: 30px;
+    }
+
+    .slide-content {
+        max-height: calc(100vh - 150px);
+    }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 980px) {
     .slide {
-        padding: 30px 24px;
+        padding: 32px 34px 96px;
     }
-    h1 { font-size: 32px; }
-    h2 { font-size: 26px; }
+
+    .split-layout,
     .cards-grid,
     .cards-grid.two-col,
-    .split-layout,
     .conclusion-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
     }
-    .nav { right: 12px; }
-    .nav-btn { width: 40px; height: 40px; }
+
+    .cards-grid {
+        margin-bottom: 18px;
+    }
+
+    .slide-content {
+        max-height: calc(100vh - 140px);
+    }
+
+    .slide::before {
+        font-size: 90px;
+    }
+
+    .keyboard-hint {
+        display: none;
+    }
+
+    .nav {
+        bottom: 14px;
+    }
+
+    .nav-dots {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .slide {
+        padding: 24px 18px 88px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+
+    h3, h4 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 17px;
+    }
+
+    .subtitle {
+        font-size: 17px;
+    }
+
+    .hero-stats {
+        gap: 18px;
+    }
+
+    .hero-stat span {
+        font-size: 21px;
+    }
+
+    .title-visual {
+        width: 160px;
+        height: 160px;
+    }
+
+    .helmet-img {
+        width: 132px;
+        height: 132px;
+    }
+
+    .badge {
+        font-size: 10px;
+        padding: 7px 14px;
+    }
+
+    .info-card,
+    .tech-card,
+    .safety-card,
+    .firstaid-block,
+    .stats-panel,
+    .warning-panel {
+        padding: 20px;
+    }
+
+    .safety-list li {
+        font-size: 17px;
+    }
+
+    .water-stat {
+        flex-direction: column;
+        text-align: center;
+        gap: 6px;
+    }
+
+    .water-stat span:last-child,
+    .fire-stat span:last-child {
+        font-size: 16px;
+    }
+
+    .stat-value {
+        font-size: 36px;
+    }
+
+    .stat-label {
+        font-size: 16px;
+    }
+
+    .conclusion-item p,
+    .orenburg-fact p,
+    .map-placeholder p {
+        font-size: 16px;
+    }
+
+    .author-name {
+        font-size: 32px;
+    }
+
+    .nav {
+        gap: 4px;
+        padding: 6px 7px;
+    }
+
+    .nav-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .aid-note {
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+    }
+
+    .aid-note-dot {
+        display: none;
+    }
+}
+
+/* Короткие экраны: ноутбуки 1366×768 и проекторы */
+@media (max-height: 820px) and (min-width: 981px) {
+    .slide {
+        padding: 28px 64px 86px;
+    }
+
+    .slide-content {
+        max-height: calc(100vh - 120px);
+    }
+
+    .slide-kicker {
+        margin-bottom: 7px;
+    }
+
+    h2 {
+        font-size: 30px;
+        margin-bottom: 18px;
+    }
+
+    h2::after {
+        margin-top: 9px;
+        width: 44px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .cards-grid {
+        gap: 14px;
+        margin-bottom: 14px;
+    }
+
+    .info-card,
+    .tech-card,
+    .safety-card,
+    .firstaid-block,
+    .stats-panel,
+    .warning-panel {
+        padding: 16px 18px;
+    }
+
+    .info-card .card-svg-icon,
+    .tech-card .tech-svg-icon {
+        width: 36px;
+        height: 36px;
+        padding: 7px;
+        margin-bottom: 8px;
+    }
+
+    .scenario-item {
+        padding: 9px 0;
+    }
+
+    .fire-rule {
+        padding: 10px 0;
+    }
+
+    .terror-rule {
+        padding: 9px 0;
+    }
+
+    .stat-item {
+        padding: 9px 0;
+    }
+
+    .stat-value {
+        font-size: 34px;
+    }
+
+    .stat-label {
+        font-size: 16px;
+    }
+
+    .aid-step {
+        padding: 8px 0;
+    }
+
+    .aid-skill {
+        padding: 8px 0;
+    }
+
+    .aid-note {
+        margin-top: 10px;
+        padding: 9px 16px;
+        font-size: 15px;
+    }
+
+    .conclusion-grid {
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .conclusion-item {
+        padding: 14px 18px;
+    }
+
+    .conclusion-svg-icon {
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+        margin-bottom: 6px;
+    }
+
+    .author-block {
+        padding-top: 14px;
+    }
+
+    .author-avatar {
+        width: 48px;
+        height: 48px;
+        font-size: 17px;
+        margin-bottom: 8px;
+    }
+
+    .author-name {
+        font-size: 32px;
+    }
+
+    .author-divider {
+        margin-bottom: 10px;
+    }
+
+    .title-visual {
+        width: 150px;
+        height: 150px;
+    }
+
+    .helmet-img {
+        width: 118px;
+        height: 118px;
+    }
+
+    .hero-stats {
+        margin-top: 10px;
+    }
+
+    .hero-stat span {
+        font-size: 22px;
+    }
+
+    .orenburg-fact {
+        padding: 9px 14px;
+        margin-bottom: 8px;
+    }
+
+    .orenburg-fact h3 {
+        font-size: 18px;
+    }
+
+    .orenburg-fact p {
+        font-size: 18px;
+    }
+
+    .map-img {
+        height: 150px;
+    }
+
+    .map-placeholder p {
+        font-size: 16px;
+        margin-top: 7px;
+    }
+
+    .emergency-numbers {
+        padding: 12px 14px;
+    }
+
+    .number-item {
+        padding: 4px 0;
+        font-size: 16px;
+    }
+
+    .number {
+        font-size: 21px;
+    }
+
+    .slide::before {
+        font-size: 130px;
+    }
+
+    .fire-visual {
+        padding: 4px 0 10px;
+    }
+
+    .extinguisher-img {
+        width: 118px;
+        height: 150px;
+    }
+
+    .fire-stat {
+        padding: 14px;
+    }
+
+    .big-number {
+        font-size: 38px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
 }
